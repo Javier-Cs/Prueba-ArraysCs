@@ -9,10 +9,10 @@ namespace pruebaArrays.logica
 {
     interface Gestion
     {
-        Producto[] obtenerAll(int n);
+        Producto[] obtenerAll();
         Producto obtenerById(int id);
         
-        void save(Producto producto);
+        Producto save(Producto producto);
         public void eliminar(int id);
     }
 }

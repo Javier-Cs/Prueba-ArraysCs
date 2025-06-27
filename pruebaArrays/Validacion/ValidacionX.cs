@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace pruebaArrays.Validacion
 {
-    public static class ValidacionX
+    public class ValidacionX
     {
-        public static bool ValidarNumero(string n) {
+        public bool ValidarNumero(string n) {
             int validar = 0;
             return int.TryParse(n, out validar);
         }
@@ -16,7 +16,7 @@ namespace pruebaArrays.Validacion
 
 
 
-        public static int SolicitarNumero( string message) {
+        public int SolicitarNumero( string message) {
             string valor;
 
             bool n = false;
