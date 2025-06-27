@@ -1,11 +1,9 @@
-﻿using pruebaArrays.logica;
-using pruebaArrays.Model;
-using pruebaArrays.Validacion;
-using pruebaArrays.Model;
-using pruebaArrays.Validacion;
-using System.ComponentModel.Design;
+﻿using System.ComponentModel.Design;
+using pruebaArrays.prueba1.Validacion;
+using pruebaArrays.prueba1.Model;
+using pruebaArrays.prueba1.logica;
 
-namespace pruebaArrays.Menu
+namespace pruebaArrays.prueba1.Menu
 {
     public class MenuTer
     {
@@ -85,7 +83,7 @@ namespace pruebaArrays.Menu
 
                         case 4:
                             numeroPR = valid.SolicitarNumero("ingrese la cantidad de productos que va a guardar: ");
-                            this.imple = new GestionImpl(numeroPR);
+                            imple = new GestionImpl(numeroPR);
                             p = 2;
                             break;
 

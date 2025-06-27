@@ -4,35 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace pruebaArrays.Validacion
+namespace pruebaArrays.prueba2.Validaciones
 {
-    public class ValidacionX
+    public class Validar
     {
-        public bool ValidarNumero(string n) {
-            int validar = 0;
-            return int.TryParse(n, out validar);
+        public bool esInt(string valor) {
+            int numero;
+            return int.TryParse(valor,out numero);
+        
         }
 
-
-
-
-        public int SolicitarNumero( string message) {
+        public int validarInt(string message)
+        {
+            bool loop = false;
             string valor;
 
-            bool n = false;
             do {
+
                 Console.Write(message);
                 valor = Console.ReadLine();
 
-                if (!ValidarNumero(valor))
+                if (!esInt(valor))
                 {
                     Console.WriteLine("El valor ingresado es invalido...");
-                    n = false;
+                    loop = false;
                 }
-                else {
-                    n = true;                 
+                else { 
+                    loop = true;
                 }
-            } while (!n);
+
+            } while (!loop);
             return Convert.ToInt32(valor);
         }
     }

@@ -1,8 +1,5 @@
-﻿using pruebaArrays.logica;
-using pruebaArrays.Menu;
-using pruebaArrays.Model;
-using pruebaArrays.Validacion;
-using System.ComponentModel.Design;
+﻿using pruebaArrays.prueba1.Menu;
+using pruebaArrays.prueba2.Menu;
 
 namespace pruebaArrays
 {
@@ -10,9 +7,10 @@ namespace pruebaArrays
     {
         static void Main(string[] args)
         {
-            MenuTer menu = new MenuTer();
-
-            menu.menuInporta();
+            //MenuTer menu = new MenuTer();
+            //menu.menuInporta();
+            MenuImpl menu = new MenuImpl();
+            menu.presentarM();
 
             Console.ReadKey();
         }
