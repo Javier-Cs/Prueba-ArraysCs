@@ -6,14 +6,26 @@ using System.Threading.Tasks;
 
 namespace pruebaArrays.prueba2.Data
 {
-    public class logica
+    public class Logica
     {
-        string[] palabras = {"linda", "camila", "luciana", 
+        string[] palabras = {"linda", "camila", "luciana",
             "beatriz", "aleja", "mariana", "melisa", "carla", "andreina" };
 
-        internal static void juego()
+        public void juego()
         {
-            throw new NotImplementedException();
+            string palabraABuscar = obtenerPalabraRandom();
+            char[] arrayPalabra = palabraABuscar.ToCharArray();
         }
+
+
+        private string obtenerPalabraRandom() {
+            Random random = new Random();
+            int indi = random.Next(palabras.Length);
+            return palabras[indi];
+        }
+
+        
+
+
     }
 }

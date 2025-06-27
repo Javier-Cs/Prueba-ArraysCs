@@ -11,6 +11,7 @@ namespace pruebaArrays.prueba2.Menu
     public class MenuImpl
     {
         Validar valid = new Validar();
+        Logica logica = new Logica(); 
         bool loop = false;
 
         public int  menu() {
@@ -37,16 +38,10 @@ namespace pruebaArrays.prueba2.Menu
                         break;
                     default:
                         Console.WriteLine("opcion fuera del menu...");
-
                         break;
-
-
                 }
             }
             while (!loop);
-            
         }
     }
-
-    
 }
