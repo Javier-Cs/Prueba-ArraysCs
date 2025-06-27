@@ -20,33 +20,25 @@ namespace pruebaArrays
             GestionImpl imple = new GestionImpl();
             int opcion = 0;
             bool n = false;
-            do {
+            
 
-                Console.WriteLine("Importadora vC");
-                Console.WriteLine("- Menu -");
-                Console.WriteLine("NOTA!!! - Para avanzar - Primero debe de asignar un numero de productos");
-                Console.WriteLine("1. Crear Producto");
-                Console.WriteLine("2. Listar Productos");
-                Console.WriteLine("3. Eliminar Producto");
-                Console.WriteLine("4. ingrese el numero de productos");
-                Console.WriteLine("5. Salir");
+            Console.WriteLine("Importadora vC");
+            Console.WriteLine("- Menu -");
+            Console.WriteLine("NOTA!!! - Para avanzar - Primero debe de asignar un numero de productos");
+            Console.WriteLine("1. Crear Producto");
+            Console.WriteLine("2. Listar Productos");
+            Console.WriteLine("3. Eliminar Producto");
+            Console.WriteLine("4. ingrese el numero de productos");
+            Console.WriteLine("5. Salir");
 
-            } while (!n);
+            
+            string mensa = "Seleccione una opción: ";
+            Console.WriteLine(mensa);
+            string valor  = Console.ReadLine();
 
-            do {
-                Console.Write("Seleccione una opción: ");
-                string m = Console.ReadLine();
-                if (!ValidacionX.ValidarNumero(m))
-                {
-                    Console.WriteLine("Ingreso un texto, ingrese un numero del menu.");
-                    n = false;
-                }
-                else {
-                    opcion = Convert.ToInt32(m);
-                    n = true;
-                }
+            opcion = ValidacionX.Valor(mensa, valor);
 
-            } while (!n);
+         
 
 
             switch (opcion) {

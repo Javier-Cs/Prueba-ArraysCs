@@ -14,8 +14,20 @@ namespace pruebaArrays.Validacion
         }
 
         public static int Valor( string message,string valor) {
-
-            return 7;
+            bool n = false;
+            do {
+                if (!ValidarNumero(valor))
+                {
+                    Console.WriteLine("El valor ingresado es invalido...");
+                    Console.WriteLine(message);
+                    valor = Console.ReadLine();
+                    n = false;
+                }
+                else {
+                    n = true;                 
+                }
+            } while (!n);
+            return Convert.ToInt32(valor);
         }
     }
 }
