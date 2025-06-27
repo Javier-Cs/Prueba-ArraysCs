@@ -13,14 +13,20 @@ namespace pruebaArrays.Validacion
             return int.TryParse(n, out validar);
         }
 
-        public static int Valor( string message,string valor) {
+
+
+
+        public static int SolicitarNumero( string message) {
+            string valor;
+
             bool n = false;
             do {
+                Console.Write(message);
+                valor = Console.ReadLine();
+
                 if (!ValidarNumero(valor))
                 {
                     Console.WriteLine("El valor ingresado es invalido...");
-                    Console.WriteLine(message);
-                    valor = Console.ReadLine();
                     n = false;
                 }
                 else {

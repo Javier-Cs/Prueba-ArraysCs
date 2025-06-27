@@ -14,14 +14,8 @@ namespace pruebaArrays
             Console.ReadKey();
         }
 
-        private static void menuInporta()
-        {
-            
-            GestionImpl imple = new GestionImpl();
-            int opcion = 0;
-            bool n = false;
-            
-
+        private static int presentarMenu() {
+            Console.WriteLine("");
             Console.WriteLine("Importadora vC");
             Console.WriteLine("- Menu -");
             Console.WriteLine("NOTA!!! - Para avanzar - Primero debe de asignar un numero de productos");
@@ -30,50 +24,65 @@ namespace pruebaArrays
             Console.WriteLine("3. Eliminar Producto");
             Console.WriteLine("4. ingrese el numero de productos");
             Console.WriteLine("5. Salir");
-
-            
-            string mensa = "Seleccione una opción: ";
-            Console.WriteLine(mensa);
-            string valor  = Console.ReadLine();
-
-            opcion = ValidacionX.Valor(mensa, valor);
-
-         
+            return ValidacionX.SolicitarNumero("Seleccione una opción del menu: ");
+        }
 
 
-            switch (opcion) {
-                case 1:
-                    Console.WriteLine("Ingrese el id del prosucto: ");
-                    int idPr = Convert.ToInt32(Console.Read());
-                    Console.ReadLine();
 
-                    Console.WriteLine("Ingrese el nombre del producto: ");
-                    string nombre = Console.ReadLine();
+        private static void menuInporta()
+        {
+            GestionImpl imple = new GestionImpl();
+            int p = 0;
+            int opcion = 0;
+            bool salir = false;
 
-                    Console.WriteLine("Ingrese el precio del producto: ");
-                    decimal price = Convert.ToDecimal(Console.ReadLine());
-
-                    imple.save(new Producto(idPr, nombre, price ));
+            do
+            {
+                opcion = presentarMenu();
 
 
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    imple.eliminar(7);
-                    break;
-                case 4:
-                    Console.WriteLine("ingrese el numero de productos que va a guardar: ");
-                    int numeroPR = Convert.ToInt32(Console.ReadLine());
-                    GestionImpl im = new GestionImpl(numeroPR);
-                    break;
-                case 5:
-                    break;
-                default:
-                    Console.WriteLine("el valor ingresado no es valido....");
-                    break;
-            
-            }
+                if (opcion == 4 || p == 2)
+                {
+                    switch (opcion)
+                    {
+                        case 1:
+                            Console.WriteLine("Ingrese el id del producto: ");
+                            int idPr = Convert.ToInt32(Console.Read());
+                            Console.ReadLine();
+
+                            Console.WriteLine("Ingrese el nombre del producto: ");
+                            string nombre = Console.ReadLine();
+
+                            Console.WriteLine("Ingrese el precio del producto: ");
+                            decimal price = Convert.ToDecimal(Console.ReadLine());
+
+                            imple.save(new Producto(idPr, nombre, price));
+
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            imple.eliminar(7);
+                            break;
+                        case 4:
+                            int numeroPR = ValidacionX.SolicitarNumero("ingrese la cantidad de profuctos que va a guardar: ");
+                            GestionImpl im = new GestionImpl(numeroPR);
+                            p = 2;
+
+                            break;
+                        case 5:
+                            salir = true;
+                            Console.WriteLine("precione cualquier tecla para cerrar la terminal.");
+                            break;
+                        default:
+                            Console.WriteLine("el valor ingresado no es valido....");
+                            break;
+                    }
+                }
+                else {
+                    Console.WriteLine("!! --- Primero debe de ingregar el numero de productos a guardar ---!!");
+                }
+            } while (!salir);
         }
     }
 }
