@@ -11,31 +11,43 @@ namespace pruebaArrays.prueba2.Data
         string[] palabras = {"linda", "camila", "luciana",
             "beatriz", "alejandra", "mariana", "melisa", "catalina", "andreina" };
         string palabra;
-        string palabraABuscar;
+        char[] arrayPalabra;
+        char[] arrayBuscar;
+        //string palabraABuscar;
 
 
         public void juego()
         {
             palabra = obtenerPalabraRandom();
+            //palabraABuscar = palabra;
+            arrayPalabra = palabra.ToCharArray();
+            arrayBuscar = new char[arrayPalabra.Length];
 
-            palabraABuscar = palabra;
-            char[] arrayPalabra = palabraABuscar.ToCharArray();
+            //palabraABuscar = palabraABuscar.Replace("a", "_");
+            //palabraABuscar = palabraABuscar.Replace("l", "_");
+            //palabraABuscar = palabraABuscar.Replace("r", "_");
+            char[] letrasOcultas = { 'a', 'l', 'r' };
+            for (int k = 0; k < arrayPalabra.Length;k ++)
+            {
+                if (Array.Exists(letrasOcultas, c => c == arrayPalabra[k]))
+                {
+                    arrayBuscar[k] = '_';
+                }
+                else {
+                    arrayBuscar[k] = arrayPalabra[k];
+                }
 
-            palabraABuscar = palabraABuscar.Replace("a", "_");
-            palabraABuscar = palabraABuscar.Replace("l", "_");
-            palabraABuscar = palabraABuscar.Replace("r", "_");
+            }
 
-            char[] arrayBuscar = palabraABuscar.ToCharArray();
-            Console.WriteLine("");
-            Console.WriteLine("El nombre a buscar es:");
-            Console.WriteLine(palabraABuscar);
+            //arrayBuscar = palabraABuscar.ToCharArray();
+            Console.WriteLine("\nEl nombre a buscar es:");
+            Console.WriteLine(new string(arrayBuscar));
 
             for (int i = 0; i < 5; i++)
             {
                 bool acierto = false;
-                Console.WriteLine("");
-                Console.Write("Ingrese una caracter: ");
-                char caracter = Console.ReadKey().KeyChar;
+                Console.Write("\nIngrese una caracter: ");
+                char caracter = Char.ToLower(Console.ReadKey().KeyChar);
                 Console.WriteLine();
 
                 for (int j = 0; j < arrayPalabra.Length; j++)
@@ -60,25 +72,20 @@ namespace pruebaArrays.prueba2.Data
                 // para cerrar el bucle si ya completo la palabra y le sobran intentos
                 if (new string(arrayPalabra) == new string(arrayBuscar))
                 {
-                    Console.WriteLine("");
-                    Console.WriteLine("|---- Ganaste pelado!! ----|");
-                    Console.WriteLine("");
+                    Console.WriteLine("\n|---- Ganaste pelado!! ----|\n");
                     break;
                 }
             }
             if (new string(arrayPalabra) != new string(arrayBuscar))
             {
-                Console.WriteLine("");
-                Console.WriteLine("|---- Ya Perdiste pelado tonto!! ----|");
-                Console.WriteLine("");
+                Console.WriteLine("\n|---- Ya Perdiste pelado tonto!! ----|\n");
             }
 
             Console.WriteLine("\nPalabra final:");
             Console.WriteLine(new string(arrayPalabra));
             Console.WriteLine("Progreso del jugador:");
             Console.WriteLine(new string(arrayBuscar));
-            
-
+     
         }
             
 
@@ -91,17 +98,5 @@ namespace pruebaArrays.prueba2.Data
             int indi = random.Next(palabras.Length);
             return palabras[indi];
         }
-
-        //private void convertirCaracter(char a) {
-        //    if () 
-        //    {
-        //    }
-        //}
-
-
-
-        
-
-
     }
 }
