@@ -26,36 +26,46 @@ namespace pruebaArrays.prueba2.Data
             palabraABuscar = palabraABuscar.Replace("r", "_");
 
             char[] arrayBuscar = palabraABuscar.ToCharArray();
-
             Console.WriteLine("");
             Console.WriteLine("El nombre a buscar es:");
             Console.WriteLine(palabraABuscar);
 
             for (int i = 0; i < 5; i++)
             {
+                bool acierto = false;
                 Console.WriteLine("");
                 Console.Write("Ingrese una caracter: ");
                 char caracter = Console.ReadKey().KeyChar;
+                Console.WriteLine();
 
                 for (int j = 0; j < arrayPalabra.Length; j++)
                 {
                     if (arrayPalabra[j] == caracter)
                     {
                         arrayBuscar[j] = caracter;
+                        acierto = true;
                     }
-
+                    else
+                    {
+                        acierto = false;
+                    }
                 }
-                
+
+
+                if (acierto)
+                {
+                    Console.WriteLine("Correcto");
+                }
+                else {
+                    Console.WriteLine("Mal");
+                }
+                Console.WriteLine(new string(arrayBuscar));
             }
-            for (int b = 0; b < arrayPalabra.Length; b++)
-            {
-                Console.Write(arrayPalabra[b]);
-            }
-            Console.WriteLine("");
-            for (int b = 0; b < arrayPalabra.Length; b++)
-            {
-                Console.Write(arrayBuscar[b]);
-            }
+            Console.WriteLine("\nPalabra final:");
+            Console.WriteLine(new string(arrayPalabra));
+            Console.WriteLine("Progreso del jugador:");
+            Console.WriteLine(new string(arrayBuscar));
+            
 
         }
             
