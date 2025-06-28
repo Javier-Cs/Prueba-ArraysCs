@@ -44,11 +44,7 @@ namespace pruebaArrays.prueba2.Data
                     {
                         arrayBuscar[j] = caracter;
                         acierto = true;
-                    }
-                    else
-                    {
-                        acierto = false;
-                    }
+                    }                    
                 }
 
 
@@ -59,8 +55,24 @@ namespace pruebaArrays.prueba2.Data
                 else {
                     Console.WriteLine("Mal");
                 }
+
                 Console.WriteLine(new string(arrayBuscar));
+                // para cerrar el bucle si ya completo la palabra y le sobran intentos
+                if (new string(arrayPalabra) == new string(arrayBuscar))
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("|---- Ganaste pelado!! ----|");
+                    Console.WriteLine("");
+                    break;
+                }
             }
+            if (new string(arrayPalabra) != new string(arrayBuscar))
+            {
+                Console.WriteLine("");
+                Console.WriteLine("|---- Ya Perdiste pelado tonto!! ----|");
+                Console.WriteLine("");
+            }
+
             Console.WriteLine("\nPalabra final:");
             Console.WriteLine(new string(arrayPalabra));
             Console.WriteLine("Progreso del jugador:");
