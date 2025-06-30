@@ -19,7 +19,7 @@ namespace pruebaArrays.prueba3.validacion
             bool n = false;
             do
             {
-                Console.WriteLine(mensaje);
+                Console.Write(mensaje);
                 valor = Console.ReadLine();
                 object obj = Convert.ToDouble(valor);
                 if (obj is double) {
@@ -41,7 +41,7 @@ namespace pruebaArrays.prueba3.validacion
             bool n = false;
             do
             {
-                Console.WriteLine(mensaje);
+                Console.Write(mensaje);
                 valor = Console.ReadLine();
                 if (!esEntero(valor)) {
                     Console.WriteLine("El valor ingresado es invalido...");

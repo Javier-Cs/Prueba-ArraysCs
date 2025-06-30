@@ -20,7 +20,7 @@ namespace pruebaArrays.prueba3.logica
             Console.WriteLine("2. mostrar notas de los estudiantes.");
             Console.WriteLine("3. calificacion mas alta y baja de la clase.");
             Console.WriteLine("4. salir.");
-            return valid.optenerNumero("Digite una opcion");
+            return valid.optenerNumero("Digite una opcion: ");
         }
 
 
