@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace pruebaArrays.prueba3.logica
 {
-    public class menu
+    public class Menu03
     {
         Validacion valid = new Validacion();
-        Metodos metodos = new Metodos();
+        Metodos metodos = new Metodos();    
         
 
         public int Menu1() {
@@ -28,23 +28,24 @@ namespace pruebaArrays.prueba3.logica
         public void mostrarMenu()
         {
             bool loop = false;
+            double promedioGeneral = 0;
+
             do
             {
                 switch (Menu1())
                 {
                     case 1:
-                        string nombre = 
-                        double[] notas =
-                            double promedioGeneral = 
-
-                        metodos.guardarEstudiante(new Estudiante(nombre, notas, promedioGeneral));
+                        metodos.guardarEstudiante();
                         break;
+
                     case 2:
                         metodos.mostrarTodasLasNotas();
                         break;
+
                     case 3:
                         metodos.mostrar2Notas();
                         break;
+
                     case 4:
                         Console.WriteLine("Adios..");
                         loop = true;

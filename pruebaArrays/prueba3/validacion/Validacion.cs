@@ -12,19 +12,43 @@ namespace pruebaArrays.prueba3.validacion
             int validar = 0;
             return int.TryParse(n, out validar);
         }
-        public int optenerNumero(string mensaje) {
 
+        public double optenerDouble(string mensaje)
+        {
             string valor;
             bool n = false;
-
-            do {
+            do
+            {
                 Console.WriteLine(mensaje);
                 valor = Console.ReadLine();
-                if (!esEntero(valor) {
+                object obj = Convert.ToDouble(valor);
+                if (obj is double) {
+                    n = true;
+                }
+                else
+                {
                     Console.WriteLine("El valor ingresado es invalido...");
                     n = false;
                 }
-                else { 
+            } while (!n);
+            return Convert.ToDouble(valor);
+        }
+
+
+        public int optenerNumero(string mensaje)
+        {
+            string valor;
+            bool n = false;
+            do
+            {
+                Console.WriteLine(mensaje);
+                valor = Console.ReadLine();
+                if (!esEntero(valor)) {
+                    Console.WriteLine("El valor ingresado es invalido...");
+                    n = false;
+                }
+                else
+                {
                     n = true;
                 }
             } while (!n);
