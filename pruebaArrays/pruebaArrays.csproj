@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="prueba4\modelo\" />
+  </ItemGroup>
+
 </Project>
