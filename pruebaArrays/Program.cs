@@ -1,75 +1,62 @@
-﻿//using pruebaArrays.prueba1.Menu;
-//using pruebaArrays.prueba3.logica;
-//using pruebaArrays.prueba4.Menu;
-
-//namespace pruebaArrays
-//{
-//    internal class Program
-//    {
-//        static void Main(string[] args)
-//        {
-//            //MenuTer menu = new MenuTer();
-//            //menu.menuInporta();
-//            //MenuImpl menu = new MenuImpl();
-//            //menu.presentarM();
-
-//            //Menu03 menu = new Menu03();
-//            //menu.mostrarMenu();
-//            //MostrarMenu menu = new MostrarMenu();
-//            //menu.implementaMenu();
-
-//            Console.ReadKey();
-//        }
-
-
-//    }
-//}
-
-
-
-//var sale = new Sale(17);
-
-
-
-//class Sale { 
-//    public decimal total {  get; set; }
-
-//    public Sale(decimal total) {
-//        total = total;
-//    } 
-
-//    public virtual string GetInfo(){
-//        return "total es: " + total;
-//    }
-//}
-
-
-//// herencia 
-//class SaleWithTax : Sale
-//{
-//    public decimal Tax { get; set; }
-//    public SaleWithTax(decimal total, decimal tax) : base(total)
-//    {
-//        Tax = tax;
-//    }
-
-//    public override string GetInfo() {
-//        return "El total con tax es: " + total;
-//    }
-
-
-//}
-
-public interface ISale { 
-    public decimal total { get; set; }
-}
-
-public interface ISave {
-    public void Save() { }
-}
-
-public class Sale : ISale, ISave 
+﻿class Program
 {
-    public decimal total { get; set; }
+    static void Main(string[] args)
+    {
+        Pila<int> pilaDeEnteros = new Pila<int>();
+        pilaDeEnteros.Push(10);
+        pilaDeEnteros.Push(20);
+
+        Console.WriteLine($"Elemento sacado: {pilaDeEnteros.Pop()}"); // 20
+        Console.WriteLine($"Cantidad de elementos: {pilaDeEnteros.ContarElementos()}"); //
+
+    }
+
+}
+
+
+
+public class Pila<T>
+{
+    private T[] elementos;
+    private int contador;
+    private const int CapacidadInicial = 10;
+
+    public Pila() {
+        elementos = new T[CapacidadInicial];
+        contador = 0;
+    }
+
+
+    //______________________________-
+    public void Push(T item) {
+        if (contador < elementos.Length)
+        {
+            elementos[contador] = item;
+            contador++;
+        }
+        else {
+            Console.WriteLine("La pila está llena. No se puede agregar más.");
+        }
+    }
+
+
+    //______________________________-
+    public T Pop() {
+        if (contador > 0)
+        {
+            contador--;
+            return elementos[contador];
+        }
+        else {
+            Console.WriteLine("La pila está vacía.");
+            return default(T);
+        }
+    }
+
+
+    //______________________________-
+    public int ContarElementos() {
+        return contador;
+    }
 
 }
