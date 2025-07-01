@@ -1,5 +1,6 @@
 ﻿using pruebaArrays.prueba1.Menu;
 using pruebaArrays.prueba3.logica;
+using pruebaArrays.prueba4.Menu;
 
 namespace pruebaArrays
 {
@@ -12,8 +13,10 @@ namespace pruebaArrays
             //MenuImpl menu = new MenuImpl();
             //menu.presentarM();
 
-            Menu03 menu = new Menu03();
-            menu.mostrarMenu();
+            //Menu03 menu = new Menu03();
+            //menu.mostrarMenu();
+            MostrarMenu menu = new MostrarMenu();
+            menu.implementaMenu();
 
             Console.ReadKey();
         }

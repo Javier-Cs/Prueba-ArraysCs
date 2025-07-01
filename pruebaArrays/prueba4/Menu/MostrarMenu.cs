@@ -22,7 +22,7 @@ namespace pruebaArrays.prueba4.Menu
             Console.WriteLine("2. Atender turno.");
             Console.WriteLine("3. Mostrar lista de turnos pendientes.");
             Console.WriteLine("4. Salir.");
-            return valid.obtenerNumero("Escribe una opcion: ");
+            return valid.obtenerNumero("\nEscribe una opcion: ");
         }
 
 

@@ -16,7 +16,7 @@ namespace pruebaArrays.prueba4.validacion
         public int obtenerNumero(string mensaje)
         {
             bool loop = false;
-            Console.WriteLine(mensaje);
+            Console.Write(mensaje);
             string valor = Console.ReadLine();
             do
             {
@@ -25,6 +25,7 @@ namespace pruebaArrays.prueba4.validacion
                     Console.WriteLine("Escriba un valor correcto");
                     loop = false;
                 }
+                loop = true;
             }
             while (!loop);
             return Convert.ToInt32(valor);
