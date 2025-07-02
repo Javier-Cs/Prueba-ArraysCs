@@ -13,6 +13,6 @@ namespace pruebaArrays.prueba1.logica
         Producto obtenerById(int id);
         
         Producto save(Producto producto);
-        public void eliminar(int id);
+        public void eliminar(int idProducto);
     }
 }

@@ -2,46 +2,105 @@
 {
     static void Main(string[] args)
     {
-        //Pila<int> pilaDeEnteros = new Pila<int>();
-        //pilaDeEnteros.Push(10);
-        //pilaDeEnteros.Push(20);
+        IRepositorio<Productos> repoProductos = new RepositorioProductos();
+        repoProductos.agregar(new Productos { idProducto = 1, Nombre = "Laptop", Precio = 1200 });
+        repoProductos.agregar(new Productos { idProducto = 2, Nombre = "Raton", Precio = 25 });
 
-        //Console.WriteLine($"Elemento sacado: {pilaDeEnteros.Pop()}"); // 20
-        //Console.WriteLine($"Cantidad de elementos: {pilaDeEnteros.ContarElementos()}"); //
+        Productos laptop = repoProductos.obtenerPorId(1);
 
-
-        //Pila<string> pilaCadenas = new Pila<string>();
-        //pilaCadenas.Push("hola");
-        //pilaCadenas.Push("Que");
-        //Console.WriteLine($"Elemento sacado: {pilaCadenas.Pop()}"); // Mundo
-        //Console.WriteLine($"Elemento sacado: {pilaCadenas.Pop()}"); // Hola
-        //Console.WriteLine($"Cantidad de elementos: {pilaCadenas.ContarElementos()}");
-
-
-        int x = 5;
-        int y = 10;
-
-        Console.WriteLine($"Antes del intercambio: x = {x}, y ={y}");
-        Utilidades.Intercambiar<int>(ref x, ref y);
-        Console.WriteLine($"despues del intercambio: x = {x}, y ={y}");
-
-        string h = "hola";
-        string g = "bien";
-        Console.WriteLine($"Antes del intercambio: h = {h}, g ={g}");
-        Utilidades.Intercambiar<string>(ref h, ref g);
-        Console.WriteLine($"despues del intercambio: h = {h}, g ={g}");
+        if (laptop != null)
+        {
+            Console.WriteLine($"Producto encontrado: {laptop.Nombre}");
+        }
+        Console.ReadLine();
     }
 }
 
-public class Utilidades { 
-    public static void Intercambiar<T>(ref T a, ref T b)
+
+public class Productos {
+    public int idProducto { get; set; }
+    public string Nombre { get; set; }
+    public decimal Precio { get; set; }
+}
+
+public interface IRepositorio<T>{
+    void agregar(T cantidad);
+    T obtenerPorId(int id);
+    IEnumerable<T> obtenerTodos();
+    void actualizar(T entidad);
+    void eliminar(T entidad);
+}
+
+public class RepositorioProductos : IRepositorio<Productos> { 
+    private List<Productos> listaProductos = new List<Productos>();
+
+    public void actualizar(Productos entidad)
     {
-        T temp = a;
-        a = b;
-        b = temp;
-        Console.WriteLine($"Intercambio: a ={a}, b ={b}");
+        throw new NotImplementedException();
+    }
+
+    public void agregar(Productos producto)
+    {
+        listaProductos.Add(producto);
+        Console.WriteLine($"Producto agregado: {producto.Nombre}");
+
+    }
+
+    public void eliminar(Productos entidad)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Productos obtenerPorId(int id)
+    {
+        return listaProductos.FirstOrDefault(p => p.idProducto == id);
+    }
+
+    public IEnumerable<Productos> obtenerTodos()
+    {
+        return listaProductos;
     }
 }
+
+
+//Pila<int> pilaDeEnteros = new Pila<int>();
+//pilaDeEnteros.Push(10);
+//pilaDeEnteros.Push(20);
+
+//Console.WriteLine($"Elemento sacado: {pilaDeEnteros.Pop()}"); // 20
+//Console.WriteLine($"Cantidad de elementos: {pilaDeEnteros.ContarElementos()}"); //
+
+
+//Pila<string> pilaCadenas = new Pila<string>();
+//pilaCadenas.Push("hola");
+//pilaCadenas.Push("Que");
+//Console.WriteLine($"Elemento sacado: {pilaCadenas.Pop()}"); // Mundo
+//Console.WriteLine($"Elemento sacado: {pilaCadenas.Pop()}"); // Hola
+//Console.WriteLine($"Cantidad de elementos: {pilaCadenas.ContarElementos()}");
+
+
+//int x = 5;
+//int y = 10;
+
+//Console.WriteLine($"Antes del intercambio: x = {x}, y ={y}");
+//Utilidades.Intercambiar<int>(ref x, ref y);
+//Console.WriteLine($"despues del intercambio: x = {x}, y ={y}");
+
+//string h = "hola";
+//string g = "bien";
+//Console.WriteLine($"Antes del intercambio: h = {h}, g ={g}");
+//Utilidades.Intercambiar<string>(ref h, ref g);
+//Console.WriteLine($"despues del intercambio: h = {h}, g ={g}");
+
+//public class Utilidades { 
+//    public static void Intercambiar<T>(ref T a, ref T b)
+//    {
+//        T temp = a;
+//        a = b;
+//        b = temp;
+//        Console.WriteLine($"Intercambio: a ={a}, b ={b}");
+//    }
+//}
 
 
 
