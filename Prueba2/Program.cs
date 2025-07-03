@@ -1,6 +1,7 @@
 ﻿using Prueba2.interfaces;
 using Prueba2.Polimorfismo;
 using Prueba2.prueba2;
+using Prueba2.UsoDeAbstract;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Prueba2
@@ -9,28 +10,67 @@ namespace Prueba2
     {
         static void Main(string[] args)
         {
-            IManejable vehiculo1 = new Bicicleta();
-            vehiculo1.Mover();
-            vehiculo1.Detener();
-            Console.WriteLine($"Tipo de vehículo: {vehiculo1.TipoVehiculo}");
+            // NO podemos hacer esto: Forma miForma = new Forma("Genérica"); // Error de compilación
+
+            Circulos miCirculo = new Circulos ("Círculo Principal", 5.0);
+            Console.WriteLine($"{miCirculo.ObtenerNombre()}"); // Método no abstracto
+            Console.WriteLine($"Área del círculo: {miCirculo.calcularAres():F2}"); // Método abstracto implementado
+            Console.WriteLine($"Lados del círculo: {miCirculo.numeroDeLados}");
 
             Console.WriteLine("--------------------");
 
-            IManejable vehiculo2 = new CocheElectrico();
-            vehiculo2.Mover();
-            vehiculo2.Detener();
-            Console.WriteLine($"Tipo de vehículo: {vehiculo2.TipoVehiculo}");
+            Rectangulos miRectangulo = new Rectangulos("Rectángulo Secundario", 4.0, 6.0);
+            Console.WriteLine($"{miRectangulo.ObtenerNombre()}");
+            Console.WriteLine($"Área del rectángulo: {miRectangulo.calcularAres()}");
+            Console.WriteLine($"Lados del rectángulo: {miRectangulo.numeroDeLados}");
 
-            // Podemos ponerlos en una lista de la interfaz, lo que demuestra el polimorfismo con interfaces
-            List<IManejable> vehiculos = new List<IManejable>();
-            vehiculos.Add(new Bicicleta());
-            vehiculos.Add(new CocheElectrico());
+            Console.WriteLine("--------------------");
 
-            Console.WriteLine("\nProbando con una lista de IManejable:");
-            foreach (var v in vehiculos)
+            // Polimorfismo con clases abstractas:
+            // Podemos almacenar objetos de clases derivadas en una lista de la clase abstracta.
+            List<Forma> formas = new List<Forma>();
+            formas.Add(miCirculo);
+            formas.Add(miRectangulo);
+            formas.Add(new Circulos("Círculo Pequeño", 2.0));
+
+            Console.WriteLine("\nCalculando áreas de todas las formas:");
+            foreach (var forma in formas)
             {
-                v.Mover();
+                Console.WriteLine($"{forma.ObtenerNombre()} - Área: {forma.calcularAres():F2}");
             }
+
+
+
+
+
+
+
+
+
+
+
+            //IManejable vehiculo1 = new Bicicleta();
+            //vehiculo1.Mover();
+            //vehiculo1.Detener();
+            //Console.WriteLine($"Tipo de vehículo: {vehiculo1.TipoVehiculo}");
+
+            //Console.WriteLine("--------------------");
+
+            //IManejable vehiculo2 = new CocheElectrico();
+            //vehiculo2.Mover();
+            //vehiculo2.Detener();
+            //Console.WriteLine($"Tipo de vehículo: {vehiculo2.TipoVehiculo}");
+
+            //// Podemos ponerlos en una lista de la interfaz, lo que demuestra el polimorfismo con interfaces
+            //List<IManejable> vehiculos = new List<IManejable>();
+            //vehiculos.Add(new Bicicleta());
+            //vehiculos.Add(new CocheElectrico());
+
+            //Console.WriteLine("\nProbando con una lista de IManejable:");
+            //foreach (var v in vehiculos)
+            //{
+            //    v.Mover();
+            //}
 
             // Declaramos una variable de tipo Figura (clase base)
             //Figura figura1 = new Circulo("Mi Círculo", 5.0);
