@@ -2,6 +2,7 @@
 using Prueba2.Polimorfismo;
 using Prueba2.prueba2;
 using Prueba2.UsoDeAbstract;
+using Prueba2.UsoDeSellado;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Prueba2
@@ -10,34 +11,11 @@ namespace Prueba2
     {
         static void Main(string[] args)
         {
-            // NO podemos hacer esto: Forma miForma = new Forma("Genérica"); // Error de compilación
+            Coches miCoche = new Coches();
+            miCoche.Conducir();
 
-            Circulos miCirculo = new Circulos ("Círculo Principal", 5.0);
-            Console.WriteLine($"{miCirculo.ObtenerNombre()}"); // Método no abstracto
-            Console.WriteLine($"Área del círculo: {miCirculo.calcularAres():F2}"); // Método abstracto implementado
-            Console.WriteLine($"Lados del círculo: {miCirculo.numeroDeLados}");
-
-            Console.WriteLine("--------------------");
-
-            Rectangulos miRectangulo = new Rectangulos("Rectángulo Secundario", 4.0, 6.0);
-            Console.WriteLine($"{miRectangulo.ObtenerNombre()}");
-            Console.WriteLine($"Área del rectángulo: {miRectangulo.calcularAres()}");
-            Console.WriteLine($"Lados del rectángulo: {miRectangulo.numeroDeLados}");
-
-            Console.WriteLine("--------------------");
-
-            // Polimorfismo con clases abstractas:
-            // Podemos almacenar objetos de clases derivadas en una lista de la clase abstracta.
-            List<Forma> formas = new List<Forma>();
-            formas.Add(miCirculo);
-            formas.Add(miRectangulo);
-            formas.Add(new Circulos("Círculo Pequeño", 2.0));
-
-            Console.WriteLine("\nCalculando áreas de todas las formas:");
-            foreach (var forma in formas)
-            {
-                Console.WriteLine($"{forma.ObtenerNombre()} - Área: {forma.calcularAres():F2}");
-            }
+            // CocheDeportivo deportivo = new CocheDeportivo(); // No se puede compilar por el error anterior
+            // deportivo.Conducir();
 
 
 
