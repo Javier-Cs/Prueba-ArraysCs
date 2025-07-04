@@ -4,68 +4,41 @@ namespace PruebaListas
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
-            Menu menu = new Menu();
-            menu.guardar();
-            menu.mostrar();
-            Console.WriteLine("---");
-            menu.eliminarTarea(2);
-            Console.WriteLine("---");
-            menu.mostrar();
+        static void Main(string[] args) { 
+            Juego juego = new Juego();
+            juego.ordenarDeMayoAMenor();
 
 
 
-            
 
+        //    Menu menu = new Menu();
+        //    menu.guardar();
+        //    menu.mostrar();
+        //    Console.WriteLine("---");
+        //    menu.eliminarTarea(2);
+        //    Console.WriteLine("---");
+        //    menu.mostrar();
 
         }
     }
-
-    public class Menu {
-        
-        List<Tarea> tareas = new List<Tarea>();
-        
-       
-        
-
-        public void guardar() { 
-            tareas.Add(new Tarea(1, "matematicas", 7.80));
-            tareas.Add(new Tarea(2, "ciencias", 7.20));
-            tareas.Add(new Tarea(3, "historia", 8.70));
-            tareas.Add(new Tarea(4, "quimica", 4.88));
-            tareas.Add(new Tarea(5, "lenguaje", 7.40));
+    public class Juego { 
+        List<int> puntajes = new List<int> {21, 54, 2 , 34, 24, 17, 66 };
 
 
+        public void ordenarDeMayoAMenor() {
+            Console.WriteLine("Puntuaciones originales: "+ string.Join(",", puntajes));
+
+            puntajes.Sort();
+            puntajes.Reverse();
+            Console.WriteLine("Puntuacion ordenada: "+ string.Join(",", puntajes));
+
+
+            int valormax = puntajes.Max();
+            Console.WriteLine("valor maximo de la lista: "+valormax);
+            int valorMin = puntajes.Min();
+            Console.WriteLine("valor minimo de la lista: "+valorMin);
         }
 
-
-        public void mostrar()
-        {
-
-            Console.WriteLine("--- Ejercicio 1: Gestión de Tareas (List<T>) ---");
-            Console.WriteLine("Tareas iniciales:");
-            tareas.ForEach(tarea => Console.WriteLine(tarea.ToString()));
-
-        }
-
-
-
-        public void eliminarTarea(int id) {
-
-            Tarea tareaAEliminar = tareas.FirstOrDefault(t => t.id == id);
-
-            if (tareaAEliminar != null)
-            {
-                tareas.Remove(tareaAEliminar);
-                Console.WriteLine($"\nTarea '{id}' eliminada.");
-            }
-            else
-            {
-                Console.WriteLine($"\nTarea '{id}' no encontrada.");
-            }
-        }
-        
 
     }
 }
