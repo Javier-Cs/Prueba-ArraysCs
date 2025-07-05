@@ -7,10 +7,10 @@ namespace PruebaListas
     {
         static void Main(string[] args) { 
 
-            UsoDeDictionary dyctionary = new UsoDeDictionary();
-            dyctionary.Mostrar();
-            dyctionary.BuscarProductosById(12);
-            dyctionary.ConprobarSiProductExiste("Monitor");
+            //UsoDeDictionary dyctionary = new UsoDeDictionary();
+            //dyctionary.Mostrar();
+            //dyctionary.BuscarProductosById(12);
+            //dyctionary.ConprobarSiProductExiste("Monitor");
 
 
 
