@@ -9,27 +9,33 @@ namespace ConhashSet.Clases
     public class UsoHashSet
     {
         public void mostrar() {
-            Console.WriteLine("Ejercicio de Queue");
-            Queue<int> listaDePedidos = new Queue<int>();
+            Console.WriteLine("--- Ejercicio 2: Historial de Navegación (Queue<T>) ---");
 
-            // añadir a la cola
-            listaDePedidos.Enqueue(1001);
-            listaDePedidos.Enqueue(1002);
-            listaDePedidos.Enqueue(1003);
-            listaDePedidos.Enqueue(1004);
+            Queue<string> historialBusqueda = new Queue<string>();
 
+            historialBusqueda.Enqueue("google.com");
+            historialBusqueda.Enqueue("youtube.com");
+            historialBusqueda.Enqueue("microsoft.com");
+            historialBusqueda.Enqueue("github.com");
 
-            //impresion
-            Console.WriteLine("Pedidos en cola: "+string.Join(",", listaDePedidos));
-            Console.WriteLine($"Pedidos pendientes: {listaDePedidos.Count}");
+            Console.WriteLine("Historial de Navegacion, del mas antiguo al mas reciente");
 
-
-            Console.WriteLine("\nProcesando pedidos:");
-            while (listaDePedidos.Count  > 0) {
-                int pedidoActual = listaDePedidos.Dequeue();
-                Console.WriteLine($"Procesando pedidos: {pedidoActual}. pedidos restantes: {listaDePedidos.Count}");
+            foreach (var item in historialBusqueda)
+            {
+                Console.WriteLine($"-{item}");
+                
             }
-            Console.WriteLine("Cola de pedidos vacía.");
+
+            Console.WriteLine($"\nPróxima página a visitar (peek): {historialBusqueda.Peek()}");
+            Console.WriteLine($"Visitando: {historialBusqueda.Dequeue()}");
+            Console.WriteLine($"Visitando: {historialBusqueda.Dequeue()}");
+
+            Console.WriteLine("\nHistorial restante:");
+            foreach (string pagina in historialBusqueda)
+            {
+                Console.WriteLine($"- {pagina}");
+            }
+
             Console.WriteLine("-------------------------------------------------");
         }
     }
