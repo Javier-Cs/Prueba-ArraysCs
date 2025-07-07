@@ -9,33 +9,32 @@ namespace ConhashSet.Clases
     public class UsoHashSet
     {
         public void mostrar() {
-            Console.WriteLine("Ejercicio 1 de prueba de usuarios");
-
-            // creacion de HashSet de strings
-            HashSet<string> usuariosConectados = new HashSet<string>();
-
-            Console.WriteLine($"añadiendo 'usuario 1': {usuariosConectados.Add("user1")}");
-            Console.WriteLine($"añadiendo 'usuario 2': {usuariosConectados.Add("user2")}");
-            Console.WriteLine($"añadiendo 'usuario 3': {usuariosConectados.Add("user3")}");
-
-            Console.WriteLine($"añadiendo 'usuario 1': {usuariosConectados.Add("user1")}");
+            Console.WriteLine("Ejercicio 2 hashSet");
 
 
+            List<int> list1 = new List<int> { 1, 2, 3, 4, 5 };
+            List<int> list2 = new List<int> { 4, 5, 6, 7, 8 };
+
+            HashSet<int> listaNum1 = new HashSet<int> (list1);
+            HashSet<int> listaNum2 = new HashSet<int> (list2);
 
 
-            Console.WriteLine("\nUsuarios conectados" );
-            foreach (var item in usuariosConectados)
-            {
-                Console.WriteLine($"item");
-            }
+            Console.WriteLine("Lista A: "+ string.Join(",", listaNum1));
+            Console.WriteLine("Lista B: " + string.Join(",", listaNum2));
 
-            Console.WriteLine($"Número total de usuarios únicos: {usuariosConectados.Count}");
+            listaNum1.IntersectWith(listaNum2);
+            Console.WriteLine("\nElementos en común (intersección): " + string.Join(", ", listaNum1));
 
-            // Comprobar si un usuario está conectado
-            string usuarioChecar = "user2";
-            Console.WriteLine($"\n¿'user2' está conectado? {usuariosConectados.Contains(usuarioChecar)}");
-            usuarioChecar = "user3";
-            Console.WriteLine($"¿'user3' está conectado? {usuariosConectados.Contains(usuarioChecar)}");
+
+            listaNum1 = new HashSet<int>(listaNum2);
+            listaNum1.UnionWith(listaNum2);
+
+            Console.WriteLine("Todos los elementos únicos (unión): " + string.Join(", ", listaNum1));
+
+            Console.WriteLine("-------------------------------------------------");
+
+
+
         }
     }
 }
