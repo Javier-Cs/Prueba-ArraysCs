@@ -14,7 +14,7 @@ namespace ConexionSqlServ.Repository
     public class PersonaRepository : PersonaService
     {
 
-        private readonly string _conexioSqlServer = "Data Source=JAVIERCS; Initial Catalog=conect.Persona_tbl; Integrated Security=True";
+        private readonly string _conexioSqlServer = "Data Source=JAVIERCS; Initial Catalog=ConexionCs_db; Integrated Security=True";
 
         //constructor
         public PersonaRepository() { }
@@ -41,7 +41,6 @@ namespace ConexionSqlServ.Repository
                     catch (SqlException ex) {
                         Console.WriteLine($"Error al guardar una persona {ex.Message}");
                     }
-                    conexion.Close();
                 }
             }
         }
@@ -75,7 +74,6 @@ namespace ConexionSqlServ.Repository
                         Console.WriteLine($"No se pudo obtener la lista de personas${ex.Message}");
                     }
                 }
-                conexion.Close();
             }
             return ListaPersonas;
         }
@@ -84,14 +82,60 @@ namespace ConexionSqlServ.Repository
         //------------------------------------------------------------------------------------------
         public void ActualizarPersona(PersonaEntity persona)
         {
-            throw new NotImplementedException();
+            using (SqlConnection conexion = new SqlConnection(_conexioSqlServer)) {
+                using (SqlCommand command = new SqlCommand(PeticionesSQL.Query_UpdatePersona, conexion)) {
+                    
+                    command.Parameters.AddWithValue("@nombre", persona.NombrePersona);
+                    command.Parameters.AddWithValue("@apellido", persona.ApellidoPersona);
+                    command.Parameters.AddWithValue("@edad", persona.Edad);
+                    command.Parameters.AddWithValue("@id", persona.IdPersona);
+                    try {
+                        conexion.Open();
+                        int rowAffect = command.ExecuteNonQuery();
+                        if (rowAffect > 0)
+                        {
+                            Console.WriteLine("Persona actualizada exitosamente.");
+                        }
+                        else {
+                            Console.WriteLine("No se encontró la persona con el ID especificado para actualizar.");
+                        }
+                    }
+                    catch (SqlException ex) {
+                        Console.WriteLine($"Error al actualizar persona: {ex.Message}");
+                    }
+                }
+            }
         }
 
 
         //------------------------------------------------------------------------------------------
         public PersonaEntity ObtenerPersonaByID(int id)
         {
-            throw new NotImplementedException();
+            PersonaEntity persona = null;
+            using (SqlConnection conexion = new SqlConnection(_conexioSqlServer)) {
+                using (SqlCommand command = new SqlCommand(PeticionesSQL.Query_ObtenByIdPersona, conexion)) {
+                    command.Parameters.AddWithValue("@id", id);
+                    try
+                    {
+                        conexion.Open();
+                        using (SqlDataReader reader = command.ExecuteReader()) {
+
+                            if (reader.Read()) {
+                                persona = new PersonaEntity { 
+                                    IdPersona = reader.GetInt32(reader.GetOrdinal("idPersona")),
+                                    NombrePersona = reader.GetString(reader.GetOrdinal("nombrePersona")),
+                                    ApellidoPersona = reader.GetString(reader.GetOrdinal("apellidoPersona")),
+                                    Edad = reader.GetInt32(reader.GetOrdinal("edad"))
+                                };
+                            }
+                        }
+                    }
+                    catch (SqlException ex) {
+                        Console.WriteLine($"Error al obtener persona por ID: {ex.Message}");
+                    }
+                }
+            }
+            return persona;
         }
 
 
@@ -118,8 +162,6 @@ namespace ConexionSqlServ.Repository
                 }
             }
         }
-
-
 
     }
 }
