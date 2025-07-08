@@ -14,7 +14,7 @@ namespace ConexionSqlServ.Repository
     public class PersonaRepository : PersonaService
     {
 
-        private readonly string _conexioSqlServer = "Data Source=JAVIERCS; Initial Catalog=ConexionCs_db; Integrated Security=True";
+        private readonly string _conexioSqlServer = "Data Source=JAVIERCS;Initial Catalog=ConexionCs_db; User ID=sa; Password=21427711;";
 
         //constructor
         public PersonaRepository() { }
@@ -23,9 +23,6 @@ namespace ConexionSqlServ.Repository
         public void InsertarPersona(PersonaEntity persona)
         {
             using (SqlConnection conexion = new SqlConnection(_conexioSqlServer)) {
-                //esta peticion se la puede obtener y almacenar en una variable
-                // o instanciarla directamente.
-                //PeticionesSQL.Query_SavePersona;
                 using(SqlCommand command = new SqlCommand(PeticionesSQL.Query_SavePersona, conexion)) {
 
                     command.Parameters.AddWithValue("@nombre", persona.NombrePersona);

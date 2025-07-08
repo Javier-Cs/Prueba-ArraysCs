@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ConexionSqlServ.Validacion
 {
-    public class Validaciones
+    public static class Validaciones
     {
 
-        private bool EsNumero(string valor) {
+        private static bool EsNumero(string valor) {
             return int.TryParse(valor, out _);
         }
 
-        public int obtenerNumero(string message) {
+        public static int obtenerNumero(string message) {
             string valor;
             bool loop = false;
 

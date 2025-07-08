@@ -1,4 +1,5 @@
-﻿using ConexionSqlServ.Validacion;
+﻿using ConexionSqlServ.Controller;
+using ConexionSqlServ.Validacion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,7 @@ namespace ConexionSqlServ.Menu
 {
     public class MenuPersona
     {
-
-        public Validaciones validaciones;
-
-        public MenuPersona(Validaciones validaciones)
-        {
-            this.validaciones = validaciones;
-        }
-
+        PersonaController controller = new PersonaController();
 
         public void mostrarMenu() {
             bool loop = false;
@@ -25,19 +19,26 @@ namespace ConexionSqlServ.Menu
                 opcion = menu();
                 switch (opcion) {
                     case 1:
+                        controller.SavePersona();
                         break;
                     case 2:
+                        controller.GetAllPersonas();
                         break;
                     case 3:
+                        controller.GetByIdPersona();
                         break;
                     case 4:
+                        controller.UpdatePersona();
                         break;
                     case 5:
+                        controller.DeleteByIdPersona();
                         break;
                     case 6:
+                        Console.WriteLine("Hasta luego.");
                         loop = true;
                         break;
                     default:
+                        Console.WriteLine("Elija una opcion valida.");
                         loop = false;
                         break;            
                 }
@@ -57,7 +58,7 @@ namespace ConexionSqlServ.Menu
             Console.WriteLine("4. Actualizar Persona");
             Console.WriteLine("5. Eliminar Persona");
             Console.WriteLine("6. Salir");
-            return validaciones.obtenerNumero("Escoja una Opcion: ");
+            return Validaciones.obtenerNumero("Escoja una Opcion: ");
         }
     }
 }
