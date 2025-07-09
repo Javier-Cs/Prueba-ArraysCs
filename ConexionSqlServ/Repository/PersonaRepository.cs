@@ -14,7 +14,7 @@ namespace ConexionSqlServ.Repository
     public class PersonaRepository : PersonaService
     {
 
-        private readonly string _conexioSqlServer = "Data Source=JAVIERCS;Initial Catalog=ConexionCs_db; User ID=sa; Password=21427711;";
+        private readonly string _conexioSqlServer = "Data Source=JAVIERCS;Initial Catalog=ConexionCs_db; User ID=sa; Password=21427711; TrustServerCertificate=True;";
 
         //constructor
         public PersonaRepository() { }
