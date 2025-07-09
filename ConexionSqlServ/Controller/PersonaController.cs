@@ -19,7 +19,20 @@ namespace ConexionSqlServ.Controller
 
         public void SavePersona()
         {
-            throw new NotImplementedException();
+            Console.Write("Introduce el nombre: ");
+            string nombre = Console.ReadLine();
+            Console.Write("Introduce el apellido: ");
+            string apellido = Console.ReadLine();
+
+            int edad = Validacion.Validaciones.obtenerNumero("Introduce la edad: ");
+
+            PersonaEntity persona = new PersonaEntity
+            {
+                NombrePersona = nombre,
+                ApellidoPersona = apellido,
+                Edad = edad
+            };
+            personaRepository.InsertarPersona(persona);            
         }
         
         
@@ -41,18 +54,48 @@ namespace ConexionSqlServ.Controller
 
         public void GetByIdPersona()
         {
-            throw new NotImplementedException();
+            int id = Validacion.Validaciones.obtenerNumero("Ingresa el id de la persona a obtener: ");
+            PersonaEntity persona = personaRepository.ObtenerPersonaByID(id);
+            if (persona != null)
+            {
+                Console.WriteLine($"\nPersona encontrada: {persona}");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró ninguna persona con el ID {id}.");
+            }
         }
 
 
         public void UpdatePersona()
         {
-            throw new NotImplementedException();
+            int id = Validacion.Validaciones.obtenerNumero("Escriba id de la persona a actualizar");
+            PersonaEntity personaExistente = personaRepository.ObtenerPersonaByID(id);
+            if (personaExistente == null)
+            {
+                Console.WriteLine($"No se encontró ninguna persona con el ID {id}.");
+                return;
+            }
+
+            Console.WriteLine($"\nActualizando persona: {personaExistente}");
+            Console.Write($"Nuevo nombre (actual: {personaExistente.NombrePersona}, dejar en blanco para no cambiar): ");
+            string nuevoNombre = Console.ReadLine();
+            Console.Write($"Nuevo apellido (actual: {personaExistente.ApellidoPersona}, dejar en blanco para no cambiar): ");
+            string nuevoApellido = Console.ReadLine();
+            Console.Write($"Nueva edad (actual: {personaExistente.Edad}, introduce un número): ");
+            int edad = Validacion.Validaciones.obtenerNumero("Escribe la edad: ");
+
+            personaExistente.NombrePersona = string.IsNullOrWhiteSpace(nuevoNombre) ? personaExistente.NombrePersona : nuevoNombre;
+            personaExistente.ApellidoPersona = string.IsNullOrWhiteSpace(nuevoApellido) ? personaExistente.ApellidoPersona : nuevoApellido;
+            personaExistente.Edad = edad;
+
+            personaRepository.ActualizarPersona(personaExistente);
         }
         
         public void DeleteByIdPersona()
         {
-            throw new NotImplementedException();
+            int id = Validacion.Validaciones.obtenerNumero("Ingresa el id de la persona a eliminar: ");
+            personaRepository.EliminarPersona(id);
         }
 
     }
