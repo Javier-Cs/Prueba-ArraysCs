@@ -12,7 +12,6 @@
     <Folder Include="Config\" />
     <Folder Include="Menu\" />
     <Folder Include="Validation\" />
-    <Folder Include="Service\" />
     <Folder Include="Repository\" />
   </ItemGroup>
 
