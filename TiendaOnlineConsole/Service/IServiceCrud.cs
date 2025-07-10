@@ -11,7 +11,7 @@ namespace TiendaOnlineConsole.Service
     // (por ejemplo, PersonaEntity, ProductoEntity, etc.) que TEntity representará.
     public interface IServiceCrud<TEntity> where TEntity : class
     {
-        void Insertar(TEntity entity);
+        void Guardar(TEntity entity);
         List<TEntity> ObtenerTodo();
         TEntity ObtenerPorId(int id);
         void Actualizar(TEntity entity);
