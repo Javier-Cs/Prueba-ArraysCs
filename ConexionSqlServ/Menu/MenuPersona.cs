@@ -11,7 +11,6 @@ namespace ConexionSqlServ.Menu
     public class MenuPersona
     {
         PersonaController controller = new PersonaController();
-
         public void mostrarMenu() {
             bool loop = false;
             int opcion = 0;
@@ -43,11 +42,7 @@ namespace ConexionSqlServ.Menu
                         break;            
                 }
             } while (!loop);
-
-            
         }
-
-
 
 
         private int menu() {

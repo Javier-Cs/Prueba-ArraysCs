@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Controller\" />
+    <Folder Include="Config\" />
+    <Folder Include="Menu\" />
+    <Folder Include="Validation\" />
+    <Folder Include="Service\" />
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
+</Project>
