@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace TiendaOnlineConsole.Validation
 {
-    public  class ValidacionNum
+    public  static class ValidacionNum
     {
 
         // para enteros
-        private bool esInts( string valor) {
+        private static bool esInts( string valor) {
             return int.TryParse(valor, out _);
         }
 
-        public int ObtenerInt(string message) {
+        public static int ObtenerInt(string message) {
             string valor;
             bool loop = false;
             do

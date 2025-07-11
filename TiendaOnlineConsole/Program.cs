@@ -1,10 +1,13 @@
-﻿namespace TiendaOnlineConsole
+﻿using TiendaOnlineConsole.Menu;
+
+namespace TiendaOnlineConsole
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            MenuIndex menu = new MenuIndex();
+            menu.MenuPrincipal();
         }
     }
 }
