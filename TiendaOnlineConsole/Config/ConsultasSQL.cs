@@ -18,8 +18,8 @@ namespace TiendaOnlineConsole.Config
 
         // Productos
         public static string Producto_Insert = "INSERT INTO practica.Productos_tbl (Nombre_producto, descrpcion_producto, precio, stock, categoria) VALUES (@NombreProducto, @DescripcionProducto, @Precio, @Stock, @Categoria)";
-        public static string Producto_SelectAll = "SELECT ProductoId, Nombre_producto, descrpcion_producto, precio, stock, categoria, Fecha_actualizacion FROM practica.Productos_tbl";
-        public static string Producto_SelectById = "SELECT ProductoId, Nombre_producto, descrpcion_producto, precio, stock, categoria, Fecha_actualizacion FROM practica.Productos_tbl WHERE ProductoId = @ProductoId";
+        public static string Producto_SelectAll = "SELECT * FROM practica.Productos_tbl";
+        public static string Producto_SelectById = "SELECT * FROM practica.Productos_tbl WHERE ProductoId = @ProductoId";
         public static string Producto_Update = "UPDATE practica.Productos_tbl SET Nombre_producto = @NombreProducto, descrpcion_producto = @DescripcionProducto, precio = @Precio, stock = @Stock, categoria = @Categoria WHERE ProductoId = @ProductoId";
         public static string Producto_Delete = "DELETE FROM practica.Productos_tbl WHERE ProductoId = @ProductoId";
         public static string Producto_UpdateStock = "UPDATE practica.Productos_tbl SET stock = @Stock WHERE ProductoId = @ProductoId";
