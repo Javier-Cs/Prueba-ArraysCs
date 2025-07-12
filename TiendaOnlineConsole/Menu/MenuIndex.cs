@@ -60,7 +60,6 @@ namespace TiendaOnlineConsole.Menu
         {
             bool loop = false;
             do{
-                Console.Clear();
                 Console.WriteLine("===================================");
                 Console.WriteLine("       GESTIÓN DE CLIENTES");
                 Console.WriteLine("===================================");
@@ -108,7 +107,6 @@ namespace TiendaOnlineConsole.Menu
         {
             bool loop = false;
             do{
-                Console.Clear();
                 Console.WriteLine("===================================");
                 Console.WriteLine("       GESTIÓN DE PRODUCTOS");
                 Console.WriteLine("===================================");
@@ -156,7 +154,6 @@ namespace TiendaOnlineConsole.Menu
         {
             bool loop = false;
             do{
-                Console.Clear();
                 Console.WriteLine("===================================");
                 Console.WriteLine("        GESTIÓN DE PEDIDOS");
                 Console.WriteLine("===================================");

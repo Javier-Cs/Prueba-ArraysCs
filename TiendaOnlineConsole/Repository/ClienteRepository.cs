@@ -13,7 +13,7 @@ namespace TiendaOnlineConsole.Repository
 {
     public class ClienteRepository : IServiceCrud<ClienteEntity>
     {
-        private readonly string conectar = "Data Source=JAVIERCS; Initial Catalog=TiendaOnline_DB; Integrated Security=True;";
+        private readonly string conectar = "Data Source=JAVIERCS;Initial Catalog=Tiendaonline_DB; User ID=sa; Password=21427711; TrustServerCertificate=True;";
         
         // ----------------------------------------------------------
         public void Guardar(ClienteEntity cliente)
@@ -55,31 +55,35 @@ namespace TiendaOnlineConsole.Repository
         public List<ClienteEntity> ObtenerTodo()
         {
             List<ClienteEntity> listaDeClientes = new List<ClienteEntity>();
+
             using (SqlConnection conexion = new SqlConnection(conectar)) {
                 using (SqlCommand command = new SqlCommand(ConsultasSQL.Cliente_SelectAll, conexion) )
                 {
                     try
                     {
                         conexion.Open();
-                        using (SqlDataReader reader = command.ExecuteReader()) {
-                            while (reader.Read()) {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
                                 listaDeClientes.Add(new ClienteEntity
                                 {
                                     idCliente = reader.GetInt32(reader.GetOrdinal("ClienteId")),
-                                    nombreCliente = reader.GetString(reader.GetOrdinal("Nombre")),
-                                    apellidoCliente = reader.GetString(reader.GetOrdinal("Apellido")),
-                                    emailCliente = reader.GetString(reader.GetOrdinal("Email")),
+                                    nombreCliente = reader.IsDBNull(reader.GetOrdinal("Nombre")) ? null : reader.GetString(reader.GetOrdinal("Nombre")),
+                                    apellidoCliente = reader.IsDBNull(reader.GetOrdinal("Apellido")) ? null : reader.GetString(reader.GetOrdinal("Apellido")),
+                                    emailCliente = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString(reader.GetOrdinal("Email")),
                                     fechaRegistroCliente = reader.GetDateTime(reader.GetOrdinal("Fecha_Registro")),
                                     activo = reader.GetBoolean(reader.GetOrdinal("Activo"))
-                                }); 
+                                });
                             }
                         }
                     }
-                    catch (SqlException ex) {
+                    catch (SqlException ex)
+                    {
                         Console.WriteLine($"Error al obtener clientes: {ex.Message}");
                     }
-                };
-            };
+                }
+            }
             return listaDeClientes;
         }
 
@@ -89,20 +93,25 @@ namespace TiendaOnlineConsole.Repository
         public ClienteEntity ObtenerPorId(int id)
         {
             ClienteEntity cliente = null;
+
             using (SqlConnection conexion = new SqlConnection(conectar)) {
                 using (SqlCommand command = new SqlCommand( ConsultasSQL.Cliente_SelectById, conexion)) {
                     command.Parameters.AddWithValue("@ClienteId", id);
                     try {
                         conexion.Open();
                         using (SqlDataReader reader = command.ExecuteReader()) {
-                            cliente = new ClienteEntity {
-                                idCliente = reader.GetInt32(reader.GetOrdinal("ClienteId")),
-                                nombreCliente = reader.GetString(reader.GetOrdinal("Nombre")),
-                                apellidoCliente = reader.GetString(reader.GetOrdinal("Apellido")),
-                                emailCliente = reader.GetString(reader.GetOrdinal("Email")),
-                                fechaRegistroCliente = reader.GetDateTime(reader.GetOrdinal("Fecha_Registro")),
-                                activo = reader.GetBoolean(reader.GetOrdinal("Activo"))
-                            };   
+                            if (reader.Read())
+                            {
+                                cliente = new ClienteEntity
+                                {
+                                    idCliente = reader.GetInt32(reader.GetOrdinal("ClienteId")),
+                                    nombreCliente = reader.IsDBNull(reader.GetOrdinal("Nombre"))? null : reader.GetString(reader.GetOrdinal("Nombre")),
+                                    apellidoCliente = reader.IsDBNull(reader.GetOrdinal("Apellido")) ? null : reader.GetString(reader.GetOrdinal("Apellido")),
+                                    emailCliente = reader.IsDBNull(reader.GetOrdinal("Email")) ? null : reader.GetString(reader.GetOrdinal("Email")),
+                                    fechaRegistroCliente = reader.GetDateTime(reader.GetOrdinal("Fecha_Registro")),
+                                    activo = reader.GetBoolean(reader.GetOrdinal("Activo"))
+                                }; 
+                            }
                         }
                     } catch (SqlException ex) {
                         Console.WriteLine($"Error al obtener cliente por ID: {ex.Message}");

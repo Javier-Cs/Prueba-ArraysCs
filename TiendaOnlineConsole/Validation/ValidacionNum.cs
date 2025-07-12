@@ -61,5 +61,32 @@ namespace TiendaOnlineConsole.Validation
             } while (!loop);
             return Convert.ToDecimal(valor);
         }
+
+
+        private static bool esBool(string valor)
+        {
+            return bool.TryParse(valor, out _) ;
+        }
+
+        public static bool obtenerBool(string message) {
+            string valor;
+            bool loop = false;
+
+            do
+            {
+                Console.WriteLine(message);
+                valor = Console.ReadLine();
+                if (!esBool(valor)) {
+                    Console.WriteLine("El valor ingresado es inválido. Por favor, ingrese un valor que represente true o false");
+                    loop = false;
+                }
+                else
+                {
+                    loop = true;
+                }
+            }
+            while (!loop);
+            return Convert.ToBoolean(valor);
+        }
     }
 }

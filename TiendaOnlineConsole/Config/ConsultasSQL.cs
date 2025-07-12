@@ -10,8 +10,8 @@ namespace TiendaOnlineConsole.Config
     {
         // Clientes
         public static string Cliente_Insert = "INSERT INTO practica.Clientes_tbl (Nombre, Apellido, Email) VALUES (@Nombre, @Apellido, @Email)";
-        public static string Cliente_SelectAll = "SELECT ClienteId, Nombre, Apellido, Email, Fecha_Registro, Activo FROM practica.Clientes_tbl";
-        public static string Cliente_SelectById = "SELECT ClienteId, Nombre, Apellido, Email, Fecha_Registro, Activo FROM practica.Clientes_tbl WHERE ClienteId = @ClienteId";
+        public static string Cliente_SelectAll = "SELECT * FROM practica.Clientes_tbl";
+        public static string Cliente_SelectById = "SELECT *  FROM practica.Clientes_tbl WHERE ClienteId = @ClienteId";
         public static string Cliente_Update = "UPDATE practica.Clientes_tbl SET Nombre = @Nombre, Apellido = @Apellido, Email = @Email, Activo = @Activo WHERE ClienteId = @ClienteId";
         public static string Cliente_Delete = "DELETE FROM practica.Clientes_tbl WHERE ClienteId = @ClienteId";
         public static string Cliente_ExistsByEmail = "SELECT COUNT(1) FROM practica.Clientes_tbl WHERE Email = @Email"; // Para verificar email único
