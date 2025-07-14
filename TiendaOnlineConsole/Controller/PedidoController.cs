@@ -18,7 +18,7 @@ namespace TiendaOnlineConsole.Controller
 
         internal void NewPedido()
         {
-            throw new NotImplementedException();
+            
         }
 
         internal void UpdateStatusPedido()

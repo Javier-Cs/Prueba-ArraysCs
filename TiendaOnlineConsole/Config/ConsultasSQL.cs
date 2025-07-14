@@ -25,7 +25,7 @@ namespace TiendaOnlineConsole.Config
         public static string Producto_UpdateStock = "UPDATE practica.Productos_tbl SET stock = @Stock WHERE ProductoId = @ProductoId";
 
         // Pedidos
-        public static string Pedido_Insert = "INSERT INTO practica.Pedido_tbl (Cliente_id, Total) VALUES (@ClienteId, @Total); SELECT SCOPE_IDENTITY();"; // Retorna el ID del pedido
+        public static string Pedido_Insert = "INSERT INTO practica.Pedido_tbl (Cliente_id, Estado ,Total) VALUES (@ClienteId, @Estado ,@Total); SELECT SCOPE_IDENTITY();"; // Retorna el ID del pedido
         public static string Pedido_SelectAll = "SELECT PedidoId, Cliente_id, FechaPedido, Estado, Total FROM practica.Pedido_tbl";
         public static string Pedido_SelectById = "SELECT PedidoId, Cliente_id, FechaPedido, Estado, Total FROM practica.Pedido_tbl WHERE PedidoId = @PedidoId";
         public static string Pedido_SelectByClienteId = "SELECT PedidoId, Cliente_id, FechaPedido, Estado, Total FROM practica.Pedido_tbl WHERE Cliente_id = @ClienteId";
