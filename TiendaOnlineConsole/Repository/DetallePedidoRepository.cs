@@ -50,7 +50,37 @@ namespace TiendaOnlineConsole.Repository
 
         public List<DetallePedidoEntity> ObtenerDetallesPorPedidoId(int pedidoId)
         {
-            throw new NotImplementedException();
+            List<DetallePedidoEntity> listaDeDetallesDePedido = new List<DetallePedidoEntity>();
+            using (SqlConnection conexion = new SqlConnection(conectar))
+            {
+                using (SqlCommand command = new SqlCommand(ConsultasSQL.DetallePedido_SelectByPedidoId, conexion))
+                {
+                    command.Parameters.AddWithValue("@PedidoId", pedidoId);
+                    try
+                    {
+                        conexion.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            listaDeDetallesDePedido.Add(new DetallePedidoEntity
+                            {
+                                idDetallePedido = reader.GetInt32(reader.GetOrdinal("DetalleId")),
+                                id_Pedido = reader.GetInt32(reader.GetOrdinal("Pedido_Id")),
+                                id_Producto = reader.GetInt32(reader.GetOrdinal("Producto_Id")),
+                                cantidad = reader.GetInt32(reader.GetOrdinal("Cantidad")),
+                                precioUnitario = reader.GetDecimal(reader.GetOrdinal("PrecioUnitario")),
+                                nombreProducto = reader.GetString(reader.GetOrdinal("Nombre_producto")),
+                                categoriaProducto = reader.GetString(reader.GetOrdinal("categoria"))
+                            });
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.WriteLine($"Error al obtener detalles del pedido {pedidoId}: {ex.Message}");
+                    }
+                }
+            }
+
+            return listaDeDetallesDePedido;
         }
     }
 }
