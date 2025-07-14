@@ -14,12 +14,13 @@ namespace TiendaOnlineConsole.Repository
 {
     public class PedidoRepository : IServiceCrud<PedidoEntity>
     {
-        private readonly DetallePedidoRepository detallePedidoRepository;
         private readonly string conectar = "Data Source=JAVIERCS;Initial Catalog=Tiendaonline_DB; User ID=sa; Password=21427711; TrustServerCertificate=True;";
+        private readonly DetallePedidoService detallePedidoRepository;
 
-        public PedidoRepository(DetallePedidoRepository detallePedidoRepository)
+
+        public PedidoRepository(DetallePedidoService detallePedidoService)
         {
-            this.detallePedidoRepository = detallePedidoRepository;
+            this.detallePedidoRepository = detallePedidoService;
         }
 
         public PedidoRepository()
