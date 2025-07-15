@@ -79,7 +79,6 @@ namespace TiendaOnlineConsole.Repository
                     }
                 }
             }
-
             return listaDeDetallesDePedido;
         }
     }

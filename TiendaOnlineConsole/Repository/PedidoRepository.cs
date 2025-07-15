@@ -29,36 +29,7 @@ namespace TiendaOnlineConsole.Repository
 
         public void Guardar(PedidoEntity pedido)
         {
-            int pedidoId = -1;
-            using (SqlConnection conexion = new SqlConnection(conectar))
-            {
-                conexion.Open();
-                SqlTransaction transaccion = conexion.BeginTransaction();
-                try{
-                    using (SqlCommand command = new SqlCommand(ConsultasSQL.Pedido_Insert,conexion))
-                    {
-                        command.Parameters.AddWithValue("@ClienteId", pedido.idPedido);
-                        command.Parameters.AddWithValue("@Estado", pedido.estadoPedido);
-                        command.Parameters.AddWithValue("@Total", pedido.totalPedido);
-                        pedidoId = Convert.ToInt32(command.ExecuteScalar());
-
-                        foreach (var detalle in pedido.detalles)
-                        {
-                            detalle.id_Pedido = pedidoId;
-                            detallePedidoRepository.InsertarDetallePedido(detalle);
-                        }
-                        transaccion.Commit();
-                        Console.WriteLine($"Pedido {pedidoId} creado exitosamente.");
-                    }
-                }
-                catch (SqlException ex) {
-                    transaccion.Rollback(); // Revertir la transacción si algo falla
-                    Console.WriteLine($"Error al crear el pedido: {ex.Message}");
-                    pedidoId = -1;
-                }
-
-                
-            }
+            return;
         }
 
 
@@ -230,7 +201,40 @@ namespace TiendaOnlineConsole.Repository
         }
 
 
+        public int insertar(PedidoEntity pedido)
+        {
+            int pedidoId = -1;
+            using (SqlConnection conexion = new SqlConnection(conectar))
+            {
+                conexion.Open();
+                SqlTransaction transaccion = conexion.BeginTransaction();
+                try
+                {
+                    using (SqlCommand command = new SqlCommand(ConsultasSQL.Pedido_Insert, conexion))
+                    {
+                        command.Parameters.AddWithValue("@ClienteId", pedido.idPedido);
+                        command.Parameters.AddWithValue("@Estado", pedido.estadoPedido);
+                        command.Parameters.AddWithValue("@Total", pedido.totalPedido);
+                        pedidoId = Convert.ToInt32(command.ExecuteScalar());
 
+                        foreach (var detalle in pedido.detalles)
+                        {
+                            detalle.id_Pedido = pedidoId;
+                            detallePedidoRepository.InsertarDetallePedido(detalle);
+                        }
+                        transaccion.Commit();
+                        Console.WriteLine($"Pedido {pedidoId} creado exitosamente.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    transaccion.Rollback(); // Revertir la transacción si algo falla
+                    Console.WriteLine($"Error al crear el pedido: {ex.Message}");
+                    pedidoId = -1;
+                }
+            }
+            return pedidoId;
+        }
 
 
         public void Actualizar(PedidoEntity entity)

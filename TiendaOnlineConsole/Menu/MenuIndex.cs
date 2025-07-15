@@ -20,7 +20,7 @@ namespace TiendaOnlineConsole.Menu
             bool loop = false; 
             do{
                 Console.Clear();
-                Console.WriteLine("===================================");
+                Console.WriteLine("\n===================================");
                 Console.WriteLine("  APLICACIÓN DE TIENDA ONLINE");
                 Console.WriteLine("===================================");
                 Console.WriteLine("1. Gestión de Clientes");
@@ -60,7 +60,7 @@ namespace TiendaOnlineConsole.Menu
         {
             bool loop = false;
             do{
-                Console.WriteLine("===================================");
+                Console.WriteLine("\n===================================");
                 Console.WriteLine("       GESTIÓN DE CLIENTES");
                 Console.WriteLine("===================================");
                 Console.WriteLine("1. Crear Cliente");
@@ -107,7 +107,7 @@ namespace TiendaOnlineConsole.Menu
         {
             bool loop = false;
             do{
-                Console.WriteLine("===================================");
+                Console.WriteLine("\n===================================");
                 Console.WriteLine("       GESTIÓN DE PRODUCTOS");
                 Console.WriteLine("===================================");
                 Console.WriteLine("1. Crear Producto");
@@ -154,7 +154,7 @@ namespace TiendaOnlineConsole.Menu
         {
             bool loop = false;
             do{
-                Console.WriteLine("===================================");
+                Console.WriteLine("\n===================================");
                 Console.WriteLine("        GESTIÓN DE PEDIDOS");
                 Console.WriteLine("===================================");
                 Console.WriteLine("1. Realizar Nuevo Pedido");
