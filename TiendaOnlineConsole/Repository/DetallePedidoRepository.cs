@@ -20,6 +20,10 @@ namespace TiendaOnlineConsole.Repository
             this.productoRepository = productoRepository;
         }
 
+        public DetallePedidoRepository()
+        {
+        }
+
         public void InsertarDetallePedido(DetallePedidoEntity detalle)
         {
             using (SqlConnection conexion = new SqlConnection(conectar))

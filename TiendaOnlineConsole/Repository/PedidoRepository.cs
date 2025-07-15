@@ -210,10 +210,9 @@ namespace TiendaOnlineConsole.Repository
                 SqlTransaction transaccion = conexion.BeginTransaction();
                 try
                 {
-                    using (SqlCommand command = new SqlCommand(ConsultasSQL.Pedido_Insert, conexion))
+                    using (SqlCommand command = new SqlCommand(ConsultasSQL.Pedido_Insert, conexion, transaccion))
                     {
                         command.Parameters.AddWithValue("@ClienteId", pedido.idPedido);
-                        command.Parameters.AddWithValue("@Estado", pedido.estadoPedido);
                         command.Parameters.AddWithValue("@Total", pedido.totalPedido);
                         pedidoId = Convert.ToInt32(command.ExecuteScalar());
 

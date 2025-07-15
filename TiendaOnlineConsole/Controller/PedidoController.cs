@@ -11,22 +11,18 @@ namespace TiendaOnlineConsole.Controller
 {
     public class PedidoController
     {
-        private readonly PedidoRepository pedidoRepository;
-        private readonly ClienteRepository clienteRepository;
-        private readonly ProductoRepository productoRepository;
         private readonly DetallePedidoRepository detallePedidoRepository;
-
-        public PedidoController(PedidoRepository pedidoRepository, ClienteRepository clienteRepository, ProductoRepository productoRepository, DetallePedidoRepository detallePedidoRepository)
-        {
-            this.pedidoRepository = pedidoRepository;
-            this.clienteRepository =  clienteRepository;
-            this.productoRepository = productoRepository;
+        public PedidoController(DetallePedidoRepository detallePedidoRepository){
             this.detallePedidoRepository = detallePedidoRepository;
         }
 
-        public PedidoController()
-        {
-        }
+
+        private readonly PedidoRepository pedidoRepository = new PedidoRepository();
+        private readonly ClienteRepository clienteRepository = new ClienteRepository();
+        private readonly ProductoRepository productoRepository = new ProductoRepository();
+        
+
+        
 
         internal void NewPedido()
         {
@@ -47,7 +43,7 @@ namespace TiendaOnlineConsole.Controller
                 return;
             }
 
-            List<DetallePedidoEntity> detallesdePedido = new List<DetallePedidoEntity>();
+            List<DetallePedidoEntity> detalledePedido = new List<DetallePedidoEntity>();
             decimal totalPedido = 0;
             bool agregarMasProductos = true;
 
@@ -85,7 +81,7 @@ namespace TiendaOnlineConsole.Controller
 
 
                 // Verificar si el producto ya está en el pedido para actualizar la cantidad
-                DetallePedidoEntity existingDetalle = detallesdePedido.FirstOrDefault(d => d.id_Producto == productoId);
+                DetallePedidoEntity existingDetalle = detalledePedido.FirstOrDefault(d => d.id_Producto == productoId);
                 if (existingDetalle != null)
                 {
                     if (existingDetalle.cantidad + cantidad > producto.stockProducto)
@@ -98,7 +94,7 @@ namespace TiendaOnlineConsole.Controller
                 }
                 else
                 {
-                    detallesdePedido.Add(new DetallePedidoEntity
+                    detalledePedido.Add(new DetallePedidoEntity
                     {
                         id_Producto = productoId,
                         cantidad = cantidad,
@@ -115,7 +111,7 @@ namespace TiendaOnlineConsole.Controller
                 agregarMasProductos = ValidacionNum.obtenerBool("");
             }
 
-            if (detallesdePedido.Count == 0)
+            if (detalledePedido.Count == 0)
             {
                 Console.WriteLine("Pedido cancelado. No se agregaron productos.");
                 return;
@@ -126,7 +122,7 @@ namespace TiendaOnlineConsole.Controller
             {
                 id_Cliente = clienteId,
                 totalPedido = totalPedido,
-                detalles = detallesdePedido
+                detalles = detalledePedido
                 // FechaPedido y Estado tienen valores por defecto en la DB
             };
 
@@ -137,7 +133,7 @@ namespace TiendaOnlineConsole.Controller
                 Console.WriteLine($"Cliente: {cliente.nombreCliente} {cliente.apellidoCliente}");
                 Console.WriteLine($"Total: {totalPedido:C}");
                 Console.WriteLine("Detalles:");
-                foreach (var detalle in detallesdePedido)
+                foreach (var detalle in detalledePedido)
                 {
                     Console.WriteLine(detalle);
                 }
